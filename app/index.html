@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ViceFrame — GTA-Style Cover Art Studio</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">VICE<span>FRAME</span></div>
+    <p class="tag">GTA-style cover art studio. Your photos are read on this machine and never uploaded.</p>
+    <div class="top-actions">
+      <label class="inline">Post size
+        <select id="size"></select>
+      </label>
+      <button id="export" class="primary" type="button">Export PNG</button>
+    </div>
+  </header>
+
+  <div class="workbench">
+    <aside class="side left">
+      <section>
+        <h2>Photos</h2>
+        <div id="tray" class="tray"></div>
+        <label class="add-photos" for="photoFiles">+ Add your photos</label>
+        <input id="photoFiles" type="file" accept="image/*" multiple hidden>
+        <p class="hint">…or drop image files anywhere on this page. Click a photo to fill the selected panel.</p>
+      </section>
+      <section>
+        <h2>Collage layout</h2>
+        <div id="layouts" class="layouts"></div>
+      </section>
+      <section>
+        <h2>Colour grade</h2>
+        <label>Grade <select id="grade"></select></label>
+        <label>Strength <input id="gradeStrength" type="range" min="0" max="1" step="0.01" value="0.85"></label>
+      </section>
+    </aside>
+
+    <main class="stage">
+      <canvas id="cover" width="1080" height="1350" aria-label="Your cover, live preview"></canvas>
+      <p class="hint">Click a panel to select it. Drag on the cover to reposition its photo; scroll to zoom.</p>
+    </main>
+
+    <aside class="side right">
+      <section>
+        <h2>Caption</h2>
+        <label>Title <input id="title" type="text" maxlength="42" value="Sunset Heist"></label>
+        <label>Subtitle <input id="subtitle" type="text" maxlength="42" value="Neon Coast Nights"></label>
+        <label>Title size <input id="titleSize" type="range" min="0.7" max="1.4" step="0.01" value="1"></label>
+        <label>Lettering <select id="titleTheme"></select></label>
+        <label>Position <select id="titlePos"></select></label>
+      </section>
+      <section>
+        <h2 id="panelTitle">Panel</h2>
+        <label>Photo <select id="panelPhoto"></select></label>
+        <label>Zoom <input id="zoom" type="range" min="1" max="4" step="0.01" value="1"></label>
+        <label>Pan left–right <input id="panX" type="range" min="-1" max="1" step="0.01" value="0"></label>
+        <label>Pan up–down <input id="panY" type="range" min="-1" max="1" step="0.01" value="0"></label>
+        <label class="check"><input id="flip" type="checkbox"> Mirror the photo</label>
+        <div class="row">
+          <button id="fillAll" type="button">Fill all panels</button>
+          <button id="resetFraming" type="button">Reset framing</button>
+        </div>
+      </section>
+      <section>
+        <h2>Quick export</h2>
+        <div class="row wrap">
+          <button id="export-square" type="button">1080 × 1080</button>
+          <button id="export-portrait" type="button">1080 × 1350</button>
+          <button id="export-story" type="button">1080 × 1920</button>
+          <button id="export-wide" type="button">1920 × 1080</button>
+        </div>
+        <p id="status" role="status"></p>
+      </section>
+    </aside>
+  </div>
+</div>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
